@@ -34,7 +34,7 @@ const TikTakToe = () => {
         return boardRows;
     }
     const cellClick = (row, col) => {
-        if (!gameOver) {
+        if (!gameOver && !boadData[row][col]) {
             boadData[row][col] = playerTurn;
             checkForGameOver(row, col);
             setPlayerTurn(playerTurn === "x" ? "o" : "x")
@@ -45,6 +45,7 @@ const TikTakToe = () => {
         let d2 = true;
         let rowCheck = true;
         let colCheck = true;
+        let allFilled = true;
 
         //check for diagonal 1
         if (row === col) {
@@ -82,7 +83,16 @@ const TikTakToe = () => {
             }
         }
 
-        setGameOver(d1 || d2 || rowCheck || colCheck);
+        //check for all filled
+        for (let i = 0; i < boardSize; i++) {
+            for (let j = 0; j < boardSize; j++) {
+                if (boadData[i][j] !== playerTurn) {
+                    allFilled = false;
+                }
+            }
+        }
+
+        setGameOver(d1 || d2 || rowCheck || colCheck || allFilled);
     }
 
     return <section>
