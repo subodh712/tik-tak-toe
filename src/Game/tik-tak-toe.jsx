@@ -86,7 +86,7 @@ const TikTakToe = () => {
         //check for all filled
         for (let i = 0; i < boardSize; i++) {
             for (let j = 0; j < boardSize; j++) {
-                if (boadData[i][j] !== playerTurn) {
+                if (boadData[i][j] == null) {
                     allFilled = false;
                 }
             }

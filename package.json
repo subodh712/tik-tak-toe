@@ -1,6 +1,6 @@
 {
   "name": "tic-tak-toe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://subodh712.github.io/tik-tak-toe",
   "private": true,
   "dependencies": {
