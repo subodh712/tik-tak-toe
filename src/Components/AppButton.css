@@ -1,0 +1,15 @@
+.app-button {
+    padding: 10px 5px;
+    border-radius: 5px;
+    background: forestgreen;
+    color: white;
+    font-size: 16px;
+}
+
+.icon-btn {
+    padding: 10px;
+    border-radius: 50%;
+    background: royalblue;
+    color: white;
+    font-size: 24px;
+}

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import AppButton from "../Components/AppButton";
 import "./tik-tak-toe.css"
 
-const TikTakToe = () => {
+const TikTakToe = ({ boardSize, setBoardSize }) => {
 
-    const [boardSize] = useState(4);
     const [playerTurn, setPlayerTurn] = useState("x");
     const [gameOver, setGameOver] = useState(false);
+    const [finalMsg, setFinalMsg] = useState();
 
     const initialiseBoardData = () => {
         let initialData = [];
@@ -21,6 +22,7 @@ const TikTakToe = () => {
         setBoardData(initialiseBoardData());
         setGameOver(false);
         setPlayerTurn("x");
+        setFinalMsg(null);
     }
 
     const generateBoard = () => {
@@ -92,15 +94,27 @@ const TikTakToe = () => {
             }
         }
 
+        if (d1 || d2 || rowCheck || colCheck) {
+            setFinalMsg(`${playerTurn.toUpperCase()} won the Game 🎉 🎊`)
+        } else if (allFilled) {
+            setFinalMsg(`Game Tied 😐`)
+        }
+
         setGameOver(d1 || d2 || rowCheck || colCheck || allFilled);
+
     }
 
     return <section>
-        <div className="game-board">
-            {generateBoard()}
-            <h3>Game Over: {gameOver ? "Yes" : "No"}</h3>
-            <button onClick={resetGame}>Reset Game</button>
+        <div className="game-container">
+            <div className="game-board">
+                BoardSize: {boardSize}
+                {generateBoard()}
+                <h3>Game Over: {gameOver ? "Yes" : "No"}</h3>
+                <AppButton onClick={resetGame} text="Reset Game" />
+            </div>
         </div>
+
+        <h1>{finalMsg}</h1>
     </section>
 };
 export default TikTakToe;
